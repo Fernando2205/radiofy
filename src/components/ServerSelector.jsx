@@ -62,12 +62,7 @@ function ServerSelector () {
           >
             <div className='font-medium'>{server.name}</div>
             <div className='text-sm text-gray-300'>{server.ip}</div>
-            <div className='flex items-center mt-1'>
-
-              <span className='text-xs'>
-                {server.lastCheckOk ? 'Activo' : 'Inactivo'}
-              </span>
-            </div>
+            <div className='flex items-center mt-1' />
           </button>
         ))}
       </div>

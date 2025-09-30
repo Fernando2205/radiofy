@@ -1,8 +1,18 @@
 import { useEffect } from 'react'
 import useRadio from '../hooks/useRadio'
+import ServerCard from './ServerCard'
 
 function ServerSelector () {
-  const { servers, selectedServer, loading, error, fetchServers, selectServer } = useRadio()
+  const {
+    servers,
+    selectedServer,
+    serverStatus,
+    loading,
+    testingServers,
+    error,
+    fetchServers,
+    selectServer
+  } = useRadio()
 
   useEffect(() => {
     fetchServers()
@@ -37,6 +47,7 @@ function ServerSelector () {
       </div>
     )
   }
+
   return (
     <div className='bg-gray-800 text-white p-4 rounded-lg mb-6'>
       <h3 className='text-lg font-semibold mb-4'>Seleccionar Servidor Radio Browser</h3>
@@ -46,24 +57,21 @@ function ServerSelector () {
           <p className='text-sm'>
             <span className='font-medium'>Conectado a:</span> {selectedServer.name}
           </p>
+          <p className='text-xs text-gray-200'>{selectedServer.url}</p>
         </div>
       )}
 
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
         {servers.map((server, index) => (
-          <button
-            key={index}
-            onClick={() => selectServer(server)}
-            className={`p-3 rounded-lg border transition-all duration-200 text-left ${
-              selectedServer?.ip === server.ip
-                ? 'bg-green-600 border-green-500'
-                : 'bg-gray-700 border-gray-600 hover:bg-gray-600'
-            }`}
-          >
-            <div className='font-medium'>{server.name}</div>
-            <div className='text-sm text-gray-300'>{server.ip}</div>
-            <div className='flex items-center mt-1' />
-          </button>
+          <ServerCard
+            key={`${server.ip}-${index}`}
+            server={server}
+            isSelected={selectedServer?.ip === server.ip}
+            isOnline={serverStatus[server.ip]}
+            isTestingThisServer={testingServers && serverStatus[server.ip] === undefined}
+            onSelect={() => selectServer(server)}
+            disabled={testingServers}
+          />
         ))}
       </div>
 
@@ -81,4 +89,5 @@ function ServerSelector () {
     </div>
   )
 }
+
 export default ServerSelector

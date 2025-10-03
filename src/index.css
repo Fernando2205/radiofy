@@ -90,3 +90,45 @@
 .animate-dropdown {
   animation: dropdown-appear 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Estilos para el slider de volumen */
+.volume-slider {
+  background: linear-gradient(to right, #10b981 0%, #10b981 var(--volume-percent, 100%), #4b5563 var(--volume-percent, 100%), #4b5563 100%);
+}
+
+.volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #10b981;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.1);
+}
+
+.volume-slider::-webkit-slider-thumb:active {
+  transform: scale(1.2);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #10b981;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.1);
+}
+

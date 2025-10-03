@@ -2,6 +2,7 @@ import useRadioContext from '../../hooks/useRadioContext'
 import { PlayIcon, PauseIcon, LiveIndicator } from '../common/icons'
 import { LoadingSpinner } from '../common/loaders'
 import StationAvatar from '../ui/StationAvatar'
+import VolumeControl from '../ui/VolumeControl'
 
 function NowPlaying () {
   const {
@@ -52,7 +53,7 @@ function NowPlaying () {
       <div className='w-6 flex-shrink-0' />
 
       {/* Control de reproducción */}
-      <div className='flex items-center space-x-3 flex-shrink-0'>
+      <div className='flex items-center space-x-4 flex-shrink-0'>
         <button
           onClick={handlePlayPause}
           disabled={loading}
@@ -70,6 +71,9 @@ function NowPlaying () {
                 <PlayIcon className='w-5 h-5' />
                 )}
         </button>
+
+        {/* Control de volumen */}
+        <VolumeControl />
 
         {/* Indicador LIVE */}
         <LiveIndicator />

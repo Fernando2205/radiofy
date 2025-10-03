@@ -4,6 +4,7 @@ export { default as ErrorMessage } from './ui/ErrorMessage'
 export { default as LoadingState } from './ui/LoadingState'
 export { default as SearchBar } from './ui/SearchBar'
 export { default as StationAvatar } from './ui/StationAvatar'
+export { default as VolumeControl } from './ui/VolumeControl'
 
 // Layout
 export { default as Header } from './layout/Header'

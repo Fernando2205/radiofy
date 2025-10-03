@@ -7,7 +7,7 @@ function useStations (selectedServer) {
   const [error, setError] = useState(null)
   const [currentCountry, setCurrentCountry] = useState(null)
 
-  const getStationsByCountry = useCallback(async (countryName, limit = 50) => {
+  const getStationsByCountry = useCallback(async (countryName, limit = 100) => {
     if (!selectedServer) {
       setError('No hay servidor seleccionado')
       return

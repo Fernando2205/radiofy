@@ -12,6 +12,7 @@ function useRadio () {
 
     // Servidores
     ...serverHook,
+    loadingServers: serverHook.loading,
 
     // Estaciones
     stations: stationsHook.stations,

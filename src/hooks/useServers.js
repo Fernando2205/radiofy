@@ -52,7 +52,7 @@ function useServers () {
     }
   }, [])
 
-  // Función para testear un servidor específico
+  // Función que prueba y actualiza estado de un  servidor
   const testSingleServer = useCallback(async (server) => {
     if (!server) return
 
@@ -78,10 +78,6 @@ function useServers () {
     setSelectedServer(server)
   }, [])
 
-  const getServerUrl = useCallback(() => {
-    return selectedServer ? selectedServer.url : 'https://all.api.radio-browser.info/'
-  }, [selectedServer])
-
   // Probar conectividad cuando cambia el servidor seleccionado
   useEffect(() => {
     if (selectedServer) {
@@ -98,7 +94,6 @@ function useServers () {
     error,
     fetchServers,
     selectServer,
-    getServerUrl,
     testSingleServer,
 
   }

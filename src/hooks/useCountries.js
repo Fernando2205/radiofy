@@ -27,7 +27,6 @@ function useCountries (selectedServer) {
       setError('Error al cargar países')
     } finally {
       setLoading(false)
-      console.log('Fetch a paises finalizado')
     }
   }, [selectedServer])
 

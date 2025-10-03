@@ -1,4 +1,4 @@
-import { createContext, useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, createContext } from 'react'
 import useRadio from '../hooks/useRadio'
 
 export const RadioContext = createContext()
@@ -27,13 +27,6 @@ export function RadioProvider ({ children }) {
         .finally(() => {
           setLoading(false)
         })
-    }
-  }
-
-  const stopStation = () => {
-    if (audioRef.current) {
-      audioRef.current.pause()
-      setIsPlaying(false)
     }
   }
 
@@ -92,7 +85,6 @@ export function RadioProvider ({ children }) {
     playStation,
     isPlaying,
     loading,
-    stopStation,
     pauseStation,
     resumeStation,
     setCurrentStation,
@@ -101,7 +93,7 @@ export function RadioProvider ({ children }) {
 
   return (
     <RadioContext.Provider value={value}>
-      <audio ref={audioRef} preload="none" />
+      <audio ref={audioRef} preload='none' />
       {children}
     </RadioContext.Provider>
   )

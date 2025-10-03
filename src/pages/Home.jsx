@@ -1,8 +1,14 @@
 import { useEffect, useState, useMemo } from 'react'
 import useRadioContext from '../hooks/useRadioContext'
-import StationCard from '../components/StationCard'
-import CountrySelector from '../components/CountrySelector'
-import { CloseIcon, SearchIcon } from '../components/icons'
+import {
+  StationCard,
+  CountrySelector,
+  SearchBar,
+  ErrorMessage,
+  LoadingState,
+  EmptyState,
+  SearchIcon
+} from '../components'
 function Home () {
   const {
     selectedServer,
@@ -10,8 +16,7 @@ function Home () {
     loadingStations,
     stationsError,
     currentCountry,
-    getColombianStations, // Nueva función
-    getRandomCountryStations,
+    getColombianStations,
     playStation,
     currentStation,
     isPlaying
@@ -19,14 +24,26 @@ function Home () {
 
   const [searchTerm, setSearchTerm] = useState('')
 
+  const getGreeting = () => {
+    const currentHour = new Date().getHours()
+
+    if (currentHour >= 5 && currentHour < 12) {
+      return 'Buenos días'
+    } else if (currentHour >= 12 && currentHour < 18) {
+      return 'Buenas tardes'
+    } else {
+      return 'Buenas noches'
+    }
+  }
+
   // Filtrar estaciones basado en el término de búsqueda
   const filteredStations = useMemo(() => {
     if (!searchTerm.trim()) {
       return stations
     }
-    
+
     const term = searchTerm.toLowerCase()
-    return stations.filter(station => 
+    return stations.filter(station =>
       station.name?.toLowerCase().includes(term) ||
       station.tags?.toLowerCase().includes(term)
     )
@@ -53,132 +70,94 @@ function Home () {
   }
 
   if (loadingStations) {
-    return (
-      <div className='space-y-6'>
-        <div className='text-center py-8'>
-          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4' />
-          <p className='text-gray-400'>Cargando emisoras...</p>
-        </div>
-      </div>
-    )
+    return <LoadingState message='Cargando emisoras...' />
   }
 
   if (stationsError) {
     return (
-      <div className='text-center py-16'>
-        <div className='bg-red-800 text-white p-6 rounded-lg max-w-md mx-auto'>
-          <h3 className='text-lg font-semibold mb-2'>Error al cargar emisoras</h3>
-          <p className='text-sm mb-4'>{stationsError}</p>
-          <button
-            onClick={getColombianStations}
-            className='bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition-colors'
-          >
-            Reintentar
-          </button>
-        </div>
-      </div>
+      <ErrorMessage
+        title='Error al cargar emisoras'
+        message={stationsError}
+        onRetry={getColombianStations}
+      />
     )
   }
 
   return (
-    <div className='space-y-6'>
-      <CountrySelector/>
-      
-      {/* Campo de búsqueda */}
-      {stations.length > 0 && (
-        <div className='max-w-md'>
-          <label className='block text-sm font-medium text-gray-300 mb-2'>
-            Buscar emisoras
-          </label>
-          <div className='relative'>
-            <input
-              type='text'
-              placeholder='Buscar por nombre o género...'
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className='w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent'
-            />
-            {searchTerm && (
-              <button
-                onClick={() => setSearchTerm('')}
-                className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white'
-              >
-                <CloseIcon className='w-5 h-5' />
-              </button>
-            )}
+    <div className='pt-6 pb-24'>
+      {/* Header */}
+      <div className='mb-8'>
+        <h1 className='text-4xl font-bold text-white mb-2'>
+          {getGreeting()}
+        </h1>
+        <p className='text-gray-300'>Descubre emisoras de radio de todo el mundo</p>
+      </div>
+
+      {/* Búsqueda y filtros */}
+      <div className='mb-8 flex items-center gap-4'>
+        <CountrySelector />
+
+        {stations.length > 0 && (
+          <div className='flex-1 max-w-md'>
+            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           </div>
-        </div>
-      )}
-      
-      {/* Título de la sección */}
-      <div className='flex items-center justify-between'>
-        <div>
-          <h2 className='text-2xl font-bold text-white mb-2'>
-            {searchTerm 
-              ? `Resultados para "${searchTerm}"` 
-              : currentCountry ? `Emisoras de ${currentCountry}` : 'Emisoras Populares'
-            }
+        )}
+      </div>
+
+      {/* Sección principal */}
+      <div className='mb-6'>
+        <div className='flex items-center justify-between mb-6'>
+          <h2 className='text-2xl font-bold text-white'>
+            {searchTerm
+              ? 'Resultados de búsqueda'
+              : currentCountry ? `Emisoras populares en ${currentCountry}` : 'Emisoras populares'}
           </h2>
-          <p className='text-gray-400'>
-            {filteredStations.length} emisoras encontradas
-            {searchTerm && stations.length !== filteredStations.length && (
-              ` de ${stations.length} total`
-            )}
-          </p>
+
         </div>
 
-        <div className='flex space-x-3'>
-          <button
-            onClick={getColombianStations}
-            className='bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors'
-          >
-            Ir a emisoras Colombia
-          </button>
-         
-        </div>
+        {searchTerm && (
+          <p className='text-gray-400 text-sm mb-4'>
+            {filteredStations.length} resultados para "{searchTerm}"
+          </p>
+        )}
       </div>
 
       {/* Grid de emisoras */}
       {stations.length > 0
         ? (
           <>
-            {filteredStations.length > 0 ? (
-              <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4'>
-                {filteredStations.map((station) => (
-                  <StationCard
-                    key={station.stationuuid}
-                    station={station}
-                    onPlay={playStation}
-                    isPlaying={currentStation?.stationuuid === station.stationuuid && isPlaying}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className='text-center py-16'>
-                <SearchIcon className='w-16 h-16 text-gray-500 mx-auto mb-4' />
-                <p className='text-gray-400 mb-4'>
-                  No se encontraron emisoras para "{searchTerm}"
-                </p>
-                <button
-                  onClick={() => setSearchTerm('')}
-                  className='bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors'
-                >
-                  Limpiar búsqueda
-                </button>
-              </div>
-            )}
+            {filteredStations.length > 0
+              ? (
+                <div className='grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-6'>
+                  {filteredStations.map((station) => (
+                    <StationCard
+                      key={station.stationuuid}
+                      station={station}
+                      onPlay={playStation}
+                      isPlaying={currentStation?.stationuuid === station.stationuuid && isPlaying}
+                    />
+                  ))}
+                </div>
+                )
+              : (
+                <EmptyState
+                  icon={SearchIcon}
+                  title='No se encontraron resultados'
+                  description='Intenta buscar algo diferente.'
+                  actionText='Limpiar búsqueda'
+                  onAction={() => setSearchTerm('')}
+                />
+                )}
           </>
           )
         : (
-          <div className='text-center py-16'>
-            <p className='text-gray-400 mb-4'>No se encontraron emisoras</p>
-            <button
-              onClick={getColombianStations}
-              className='bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors'
-            >
-              Cargar emisoras Colombia
-            </button>
-          </div>
+          <EmptyState
+            title='¡Comienza a explorar!'
+            description='Descubre emisoras de radio de todo el mundo.'
+            actionText='Explorar emisoras'
+            onAction={getColombianStations}
+            actionClassName='bg-green-500 hover:bg-green-400 text-black'
+          />
           )}
     </div>
   )

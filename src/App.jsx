@@ -12,7 +12,7 @@ function App () {
       <div className='h-screen bg-black text-white flex flex-col overflow-hidden relative'>
         {/* Layout principal */}
         <div className='flex flex-1 gap-2 p-2 min-h-0 relative'>
-          {/* Sidebar con animación slide */}
+          {/* Sidebar */}
           <div className={`transition-all duration-500 ease-in-out ${
             sidebarVisible
               ? 'w-72 opacity-100 transform translate-x-0'

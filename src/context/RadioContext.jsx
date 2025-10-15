@@ -15,11 +15,11 @@ export function RadioProvider ({ children }) {
   const playStation = (station) => {
     if (audioRef.current) {
       setLoading(true)
+      setCurrentStation(station)
       audioRef.current.src = station.url_resolved
       audioRef.current.load()
       audioRef.current.play()
         .then(() => {
-          setCurrentStation(station)
           setIsPlaying(true)
         })
         .catch(error => {

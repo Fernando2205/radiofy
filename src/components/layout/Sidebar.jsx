@@ -20,7 +20,7 @@ function Sidebar () {
     <div className='w-72 bg-black rounded-lg p-6 flex flex-col gap-6 overflow-hidden '>
       {/* Logo y título */}
       <div className='flex items-center gap-2 cursor-pointer group'>
-        <BaselineRadio className='w-8 h-8 text-green-500 transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 group-hover:text-green-400' />
+        <BaselineRadio className='w-8 h-8 text-green-500 transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 ' />
         <span className='text-2xl font-bold text-white '>RadioFy</span>
       </div>
 

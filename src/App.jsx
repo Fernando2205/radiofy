@@ -9,10 +9,10 @@ function App () {
 
   return (
     <RadioProvider>
-      <div className='h-screen bg-black text-white flex flex-col overflow-hidden relative'>
+      <div className='h-screen bg-black/95 text-white flex flex-col overflow-hidden relative'>
         {/* Layout principal */}
-        <div className='flex flex-1 gap-2 p-2 min-h-0 relative'>
-          {/* Sidebar */}
+        <div className={`flex flex-1 p-2 min-h-0 relative ${sidebarVisible ? 'gap-2' : 'gap-0'}`}>
+          {/* Sidebar con animación slide */}
           <div className={`transition-all duration-500 ease-in-out ${
             sidebarVisible
               ? 'w-72 opacity-100 transform translate-x-0'
@@ -23,18 +23,19 @@ function App () {
               sidebarVisible ? 'scale-100' : 'scale-95'
             }`}
             >
-              <Sidebar onToggle={() => setSidebarVisible(!sidebarVisible)} />
+              <Sidebar />
             </div>
           </div>
 
           {/* Contenido principal */}
-          <main className='flex-1 bg-gradient-to-b from-green-900/20 to-black rounded-lg overflow-hidden flex flex-col min-h-0'>
+          <main className='flex-1 bg-black rounded-lg overflow-hidden flex flex-col min-h-0'>
             <Header sidebarVisible={sidebarVisible} onToggleSidebar={() => setSidebarVisible(!sidebarVisible)} />
 
             {/* Área de scroll del contenido */}
             <section className='flex-1 overflow-y-auto px-6 pb-6 min-h-0 thin-scrollbar'>
               <Routes>
                 <Route path='/' element={<Home />} />
+
               </Routes>
             </section>
           </main>
@@ -42,7 +43,7 @@ function App () {
 
         {/* Reproductor */}
         <div className={`absolute bottom-2 right-6 h-20 z-50 transition-all duration-500 ease-out ${
-          sidebarVisible ? 'left-80' : 'left-2'
+          sidebarVisible ? 'left-80' : 'left-6'
         }`}
         >
           <NowPlaying />

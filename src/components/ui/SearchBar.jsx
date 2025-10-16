@@ -9,7 +9,7 @@ function SearchBar ({ searchTerm, setSearchTerm }) {
         placeholder='¿Qué quieres escuchar?'
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className='w-full bg-gray-800 border-0 rounded-full pl-10 pr-10 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500'
+        className='w-full bg-[#242424] border-0 rounded-full pl-10 pr-10 py-3 text-white placeholder-[#6a6a6a] focus:outline-none focus:ring-2 focus:ring-green-500'
       />
       {searchTerm && (
         <button

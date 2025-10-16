@@ -1,16 +1,24 @@
+import { ErrorIcon } from '../common/icons'
 function ErrorMessage ({ title, message, onRetry, retryText = 'Reintentar' }) {
   return (
-    <div className='text-center py-16'>
-      <div className='bg-red-800 text-white p-6 rounded-lg max-w-md mx-auto'>
-        <h3 className='text-lg font-semibold mb-2'>{title}</h3>
-        <p className='text-sm mb-4'>{message}</p>
+    <div className='flex items-center justify-center py-16'>
+      <div className=' text-white p-8 rounded-xl max-w-md w-full mx-4 '>
+        <div className='flex items-center justify-center mb-4'>
+          <div className='w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-2'>
+            <ErrorIcon className='w-6 h-6 text-red-500' />
+          </div>
+        </div>
+        <h3 className='text-xl font-bold mb-2 text-white text-center'>{title}</h3>
+        <p className='text-sm mb-6 text-[#b3b3b3] text-center leading-relaxed'>{message}</p>
         {onRetry && (
-          <button
-            onClick={onRetry}
-            className='bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition-colors'
-          >
-            {retryText}
-          </button>
+          <div className='flex justify-center'>
+            <button
+              onClick={onRetry}
+              className='bg-white  text-black font-semibold px-6 py-2 rounded-full transition-all duration-200 cursor-pointer'
+            >
+              {retryText}
+            </button>
+          </div>
         )}
       </div>
     </div>

@@ -90,7 +90,7 @@ function Header ({ sidebarVisible, onToggleSidebar }) {
           <button
             onClick={() => setShowServers(!showServers)}
             disabled={loadingServers}
-            className='flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white px-3 py-2 rounded-lg transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'
+            className='flex items-center gap-2 bg-[#232323] hover:bg-[#303030] text-white px-3 py-2 rounded-lg transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'
           >
             {loadingServers
               ? (
@@ -114,7 +114,7 @@ function Header ({ sidebarVisible, onToggleSidebar }) {
 
           {/* Dropdown de servidores */}
           {showServers && (
-            <div className='absolute right-0 mt-2 w-80 bg-gray-800 rounded-lg shadow-lg border border-gray-700 z-50 max-h-96 overflow-y-auto animate-dropdown cursor-pointer'>
+            <div className='absolute right-0 mt-2 w-80 bg-[#232323] rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto animate-dropdown cursor-pointer thin-scrollbar'>
               <div className='p-3 border-b border-gray-700'>
                 <h3 className='text-sm font-semibold text-white'>Servidores Disponibles</h3>
               </div>
@@ -128,12 +128,12 @@ function Header ({ sidebarVisible, onToggleSidebar }) {
                 : error
                   ? (
                     <div className='p-4'>
-                      <div className='text-center text-red-400 mb-3'>
+                      <div className='text-center text-white mb-3'>
                         <p className='text-sm'>{error}</p>
                       </div>
                       <button
                         onClick={fetchServers}
-                        className='w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm transition-colors'
+                        className='w-full bg-white hover:scale-101 text-black px-4 py-2 rounded text-sm font-semibold transition-all duration-200 cursor-pointer'
                       >
                         Reintentar
                       </button>
@@ -192,7 +192,7 @@ function Header ({ sidebarVisible, onToggleSidebar }) {
         <div className='relative' ref={profileDropdownRef}>
           <button
             onClick={() => setShowProfile(!showProfile)}
-            className='flex items-center gap-2 bg-black/50 hover:bg-black/70 rounded-full px-4 py-2 transition-colors cursor-pointer'
+            className='flex items-center gap-2 bg-[#232323] hover:bg-[#303030] rounded-full px-4 py-2 transition-colors cursor-pointer'
           >
             <div className='w-7 h-7 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-black font-bold text-sm'>
               U
@@ -203,7 +203,7 @@ function Header ({ sidebarVisible, onToggleSidebar }) {
 
           {/* Dropdown del perfil */}
           {showProfile && (
-            <div className='absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg border border-gray-700 py-2 animate-dropdown'>
+            <div className='absolute right-0 mt-2 w-48 bg-[#232323] rounded-lg shadow-lg  py-2 animate-dropdown'>
               <div className='px-4 py-2 text-sm text-gray-300'>
                 Si ve esto pongame 5 profe
               </div>

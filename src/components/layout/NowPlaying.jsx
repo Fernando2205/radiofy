@@ -24,7 +24,7 @@ function NowPlaying () {
   }
 
   return (
-    <div className='h-full bg-gradient-to-r from-gray-900 to-black backdrop-blur-md border border-gray-700 rounded-lg px-6 flex items-center shadow-2xl animate-slide-up-fade'>
+    <div className='h-full bg-gradient-to-r from-[#121212] to-black backdrop-blur-md border border-gray-700 rounded-lg px-6 flex items-center shadow-2xl animate-slide-up-fade'>
       {/* Información de la estación */}
       <div className='flex items-center space-x-4 flex-1 min-w-0'>
         <StationAvatar
@@ -57,7 +57,7 @@ function NowPlaying () {
         <button
           onClick={handlePlayPause}
           disabled={loading}
-          className='w-10 h-10 bg-green-500 hover:bg-green-400 text-black rounded-full flex items-center justify-center hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer '
+          className='w-10 h-10 bg-green-500  text-black rounded-full flex items-center justify-center hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer '
         >
           {loading
             ? (

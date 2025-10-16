@@ -4,7 +4,7 @@ function SidebarToggle ({ sidebarVisible, onToggle }) {
   return (
     <button
       onClick={onToggle}
-      className='group relative p-2 text-gray-400 hover:text-white transition-all duration-300 rounded-md hover:bg-gray-800 hover:scale-105 cursor-pointer'
+      className='group relative p-2 text-gray-400 hover:text-white transition-all duration-300 rounded-md hover:bg-[#242424] hover:scale-105 cursor-pointer'
       title={sidebarVisible ? 'Ocultar sidebar' : 'Mostrar sidebar'}
     >
       <div className='relative w-5 h-5'>

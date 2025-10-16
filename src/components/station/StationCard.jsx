@@ -14,7 +14,7 @@ function StationCard ({ station, onPlay, isPlaying }) {
   }
 
   return (
-    <div className='group bg-gray-900/40 hover:bg-gray-800/60 rounded-lg p-4 transition-all duration-300  transform hover:scale-105'>
+    <div className='group bg-gray-900/40 hover:bg-gray-800/60 rounded-lg p-4 transition-all duration-500 ease-out transform hover:scale-105'>
       {/* Logo de la estación */}
       <div className='aspect-square mb-4 relative' onClick={handlePlayClick}>
         <StationAvatar

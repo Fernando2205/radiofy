@@ -9,7 +9,7 @@ import {
   EmptyState,
   SearchIcon
 } from '../components'
-function Home () {
+function Home ({ isTransitioning }) {
   const {
     selectedServer,
     stations,
@@ -128,7 +128,10 @@ function Home () {
           <>
             {filteredStations.length > 0
               ? (
-                <div className='grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-6 '>
+                <div className={`grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-6 transition-all duration-500 ${
+  isTransitioning ? 'opacity-50 scale-[0.99]' : 'opacity-100 scale-100'
+}`}
+                >
                   {filteredStations.map((station) => (
                     <StationCard
                       key={station.stationuuid}
@@ -141,7 +144,6 @@ function Home () {
                 )
               : (
                 <EmptyState
-                  icon={SearchIcon}
                   title='No se encontraron resultados'
                   description='Intenta buscar algo diferente.'
                   actionText='Limpiar búsqueda'

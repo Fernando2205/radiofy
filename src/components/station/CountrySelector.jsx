@@ -62,7 +62,7 @@ function CountrySelector () {
       {showCountries && (
         <div className='absolute left-0 mt-2 bg-[#232323] rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto animate-dropdown thin-scrollbar w-100'>
           <div className='py-2'>
-            {/* Colombia primero */}
+            {/* País seleccionado de primero */}
             {currentCountry && (
               <button
                 onClick={() => handleCountrySelect(currentCountry)}

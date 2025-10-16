@@ -31,12 +31,12 @@ function Sidebar () {
             Explorar
           </h3>
 
-          <div className='flex items-center gap-3 text-white hover:text-green-500 transition-colors cursor-pointer py-1'>
+          <div className='flex items-center gap-3 text-gray-400 hover:text-white transition-colors  py-1'>
             <AllStationsIcon className='w-6 h-6' />
             <span className='font-medium'>Todas las Estaciones</span>
           </div>
 
-          <div className='flex items-center gap-3 text-gray-400 hover:text-white transition-colors cursor-pointer py-1'>
+          <div className='flex items-center gap-3 text-gray-400 hover:text-white transition-colors  py-1'>
             <SearchIcon className='w-6 h-6' />
             <span className='font-medium'>Buscar</span>
           </div>

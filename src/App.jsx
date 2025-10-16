@@ -6,6 +6,14 @@ import Home from './pages/Home'
 
 function App () {
   const [sidebarVisible, setSidebarVisible] = useState(true)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const handleToggleSidebar = () => {
+    setIsTransitioning(true)
+    setSidebarVisible(!sidebarVisible)
+    setTimeout(() => {
+      setIsTransitioning(false)
+    }, 500) // Duración de la transición en ms
+  }
 
   return (
     <RadioProvider>
@@ -29,12 +37,12 @@ function App () {
 
           {/* Contenido principal */}
           <main className='flex-1 bg-black rounded-lg overflow-hidden flex flex-col min-h-0'>
-            <Header sidebarVisible={sidebarVisible} onToggleSidebar={() => setSidebarVisible(!sidebarVisible)} />
+            <Header sidebarVisible={sidebarVisible} onToggleSidebar={handleToggleSidebar} />
 
             {/* Área de scroll del contenido */}
             <section className='flex-1 overflow-y-auto px-6 pb-6 min-h-0 thin-scrollbar'>
               <Routes>
-                <Route path='/' element={<Home />} />
+                <Route path='/' element={<Home isTransitioning={isTransitioning} />} />
 
               </Routes>
             </section>

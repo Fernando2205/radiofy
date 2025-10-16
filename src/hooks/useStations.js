@@ -33,7 +33,7 @@ function useStations (selectedServer) {
       setStations(response.data || [])
     } catch (error) {
       console.error('Error obteniendo estaciones:', error)
-      setError('Error al cargar estaciones. Intenta con otro servidor.')
+      setError('Intenta con otro servidor.')
     } finally {
       setLoading(false)
     }

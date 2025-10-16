@@ -73,7 +73,7 @@ function CountrySelector () {
                     {/* Buscar el país en el array para obtener su código ISO */}
                     {countries.find(c => c.name === currentCountry)?.iso_3166_1} - {currentCountry}
                   </div>
-                  <CheckIcon className='w-4 h-4 text-green-400' />
+
                 </div>
               </button>
             )}

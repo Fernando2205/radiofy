@@ -73,7 +73,6 @@ function CountrySelector () {
                     {/* Buscar el país en el array para obtener su código ISO */}
                     {countries.find(c => c.name === currentCountry)?.iso_3166_1} - {currentCountry}
                   </div>
-
                 </div>
               </button>
             )}

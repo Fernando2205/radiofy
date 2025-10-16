@@ -128,7 +128,7 @@ function Home () {
           <>
             {filteredStations.length > 0
               ? (
-                <div className='grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-6'>
+                <div className='grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-6 '>
                   {filteredStations.map((station) => (
                     <StationCard
                       key={station.stationuuid}
